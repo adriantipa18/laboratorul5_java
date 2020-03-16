@@ -21,8 +21,17 @@ public class Main {
     }
 
     private void testLoadView() throws InvalidCatalogException, IOException, ClassNotFoundException {
-        Catalog catalog = Options.load("C:/Users/Adrian/Desktop/New folder/catalog.ser");
+        try{// la fel si aici, in cazul in care fisierul catalog este invalid, programul se opreste.
+            Catalog catalog = Options.load("C:/Users/Adrian/Desktop/New folder/catalog.ser");
         Document doc = catalog.findById("java1");
         Options.view(doc);
+        }
+        catch (IOException exeption1){
+            System.out.println("Error getting file Input");
+            exeption1.printStackTrace();
+        }catch(ClassNotFoundException exeption2){
+            System.out.println("Error getting trees");
+            exeption2.printStackTrace();
+        }
     }
 }
